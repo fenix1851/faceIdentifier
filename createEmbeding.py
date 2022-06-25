@@ -30,7 +30,7 @@ def createFile(dict):
     with open("face_enc.json", "w") as outfile:
         outfile.write(json.dumps(dict))
 
-def writeInFile(dict):
+def addLocalUser(dict):
     with open('face_enc.json', 'r') as jsonFile:
         jsonOut = json.load(jsonFile)
         # print(jsonOut['40'])
@@ -42,12 +42,12 @@ def writeInFile(dict):
             outfile.write(json.dumps(jsonOut))
 
 
-with open("./faces/nikita.jpeg", "rb") as image_file:
-    encoded_string = base64.b64encode(image_file.read())
-    id = randint(0,100)
-    dict = {'id':id,'photo':encoded_string}
-    dictToWrite = createEmbeding(dict)
-    writeInFile(dictToWrite)
-    # print(dictToWrite)
+# with open("./faces/nikita.jpeg", "rb") as image_file:
+#     encoded_string = base64.b64encode(image_file.read())
+#     id = randint(0,100)
+#     dict = {'id':id,'photo':encoded_string}
+#     dictToWrite = createEmbeding(dict)
+#     addLocalUser(dictToWrite)
+#     # print(dictToWrite)
 
 

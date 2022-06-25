@@ -11,27 +11,42 @@ from resize import image_resize
 
 def faceRecognition(cap):
     while True:
+        print(1)
         success, img = cap.read()
         # print(img)
-        img = image_resize(img, height=240)
-        rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        img = image_resize(img, height=180)
+        # rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        rgb = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         area = face_recognition.face_locations(rgb, model='hog')
+        print(area)
         output=img
+        rect=[]
         if(area):
             rect = img
             output = cv2.rectangle(
-                rect,  (area[0][2], area[0][3]), (area[0][0], area[0][1]),(0, 0, 255), thickness=2)
-            #print(area)
-            #grayImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            # print(grayImg)
-            # cv2.imshow('1', output)
-            # cv2.waitKey(0)
-            face = img[area[0][0]:area[0][1], area[0][3]:area[0][2]]
-            return img
+                rect,  (area[0][1], area[0][0]), (area[0][3], area[0][2]),(0, 0, 255), thickness=2)
+            return (img, rect,area)
+        else:
+            return(img,[],area)
 
         if cv2.waitKey(66) & 0xFF == ord('q'):
             break
 
+def faceRecognitionFromPhoto(photo):
+    img = image_resize(photo, height=180)
+    # rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    rgb = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    area = face_recognition.face_locations(rgb, model='hog')
+    print(area)
+    output = img
+    rect = []
+    if(area):
+        rect = img
+        output = cv2.rectangle(
+            rect,  (area[0][1], area[0][0]), (area[0][3], area[0][2]), (0, 0, 0), thickness=2)
+        return (img, rect, area)
+    else:
+        return(img, rect, area)
 
 
 
