@@ -110,6 +110,7 @@ async def addUser(UserToAdd: UserToAdd):
 @app.on_event("startup")
 @repeat_every(seconds=5)
 async def getUser():
+    print(1)
     x = requests.get('https://hakatonkrasnodar.pythonanywhere.com/get_list_users')
     text = x.text
     with open("local.json", 'r')as local:

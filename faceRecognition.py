@@ -37,7 +37,7 @@ def faceRecognitionFromPhoto(photo):
     # rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     rgb = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     area = face_recognition.face_locations(rgb, model='hog')
-    print(area)
+    # print(area)
     output = img
     rect = []
     if(area):
