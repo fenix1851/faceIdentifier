@@ -32,11 +32,11 @@ def createEmbeding(dict):
 
 
 def createFile(dict):
-    with open("face_enc.json", "w") as outfile:
+    with open(".../data/face_enc.json", "w") as outfile:
         outfile.write(json.dumps(dict))
 
 def addLocalUser(dict):
-    with open('face_enc.json', 'r') as jsonFile:
+    with open('.../data/face_enc.json', 'r') as jsonFile:
         jsonOut = json.load(jsonFile)
         # print(jsonOut['40'])
         id = list(dict.keys())[0]
@@ -45,7 +45,7 @@ def addLocalUser(dict):
         jsonOut[id].append(dict[id][0])
         jsonOut[id].append(dict[id][1])
         # print(jsonOut[id][0])
-        with open("face_enc.json", "w") as outfile:
+        with open(".../data/face_enc.json", "w") as outfile:
             outfile.write(json.dumps(jsonOut))
 
 
@@ -57,7 +57,7 @@ def addLocalUser(dict):
 #     addLocalUser(dictToWrite)
 #     # print(dictToWrite)
 def updateLocalUsers():
-    with open("./local.json", "r") as localIn:
+    with open(".../data/local.json", "r") as localIn:
         localJson = json.load(localIn)
         localJsonKeys = list(localJson.keys())
         for id in localJsonKeys:

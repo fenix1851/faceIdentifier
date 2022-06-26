@@ -11,7 +11,7 @@ import cv2
 import base64
 import json
 
-with open('face_enc.json', 'r') as jsonFile:
+with open('../data/face_enc.json', 'r') as jsonFile:
     data = json.load(jsonFile)
 def processImage(frame:str):
     frame = base64.b64decode(frame)

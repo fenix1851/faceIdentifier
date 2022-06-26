@@ -5,7 +5,7 @@ import cv2
 import json
 
 cap = cv2.VideoCapture(0)
-with open('face_enc.json', 'r') as jsonFile:
+with open('.../data/face_enc.json', 'r') as jsonFile:
     data = json.load(jsonFile)
 while True:
     face = faceRecognition(cap)

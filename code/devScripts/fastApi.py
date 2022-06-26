@@ -49,11 +49,11 @@ app.add_middleware(
 # SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="../src/templates")
 
 @app.get("/embedings")
 async def get_embedings():
-    with open('face_enc.json', 'r') as jsonFile:
+    with open('.../data/face_enc.json', 'r') as jsonFile:
         data = json.load(jsonFile)
         return data
 
@@ -64,7 +64,7 @@ class UserToDelete(BaseModel):
 
 @app.post("/deleteUser/{id}")
 async def delete_user(UserToDelete: UserToDelete):
-    with open('face_enc.json', 'r') as jsonFile:
+    with open('.../data/face_enc.json', 'r') as jsonFile:
         id = str(UserToDelete.id)
         jsonOut = json.load(jsonFile)
         # print(jsonOut)
@@ -73,9 +73,9 @@ async def delete_user(UserToDelete: UserToDelete):
         for localId in ids:
             if(localId == id):
                 jsonOut.pop(id)
-        with open('test.json', 'w') as data_file:
+        with open('.../data/test.json', 'w') as data_file:
             data = json.dump(jsonOut, data_file)
-        with open('test.json', 'r') as dataOut:
+        with open('.../data/test.json', 'r') as dataOut:
             # print(id)
             dataOut = json.load(dataOut)
             return dataOut
@@ -113,7 +113,7 @@ async def getUser():
     print(1)
     x = requests.get('https://hakatonkrasnodar.pythonanywhere.com/get_list_users')
     text = x.text
-    with open("local.json", 'r')as local:
+    with open(".../data/local.json", 'r')as local:
         localDict = json.load(local)
         serverDict = json.loads(text)
         localDictKeys = localDict.keys()
@@ -122,7 +122,7 @@ async def getUser():
         if(localDict == serverDict):
             return({"message":"up to date"})
         else:
-            with open("local.json", "w") as outfile:
+            with open(".../data/local.json", "w") as outfile:
                 outfile.write(x.text)
                 updateLocalUsers()
 
