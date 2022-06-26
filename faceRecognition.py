@@ -43,7 +43,7 @@ def faceRecognitionFromPhoto(photo):
     if(area):
         rect = img
         output = cv2.rectangle(
-            rect,  (area[0][1], area[0][0]), (area[0][3], area[0][2]), (0, 0, 0), thickness=2)
+            rect,  (area[0][1], area[0][0]), (area[0][3], area[0][2]), (0, 255, 0), thickness=2)
         return (img, rect, area)
     else:
         return(img, rect, area)

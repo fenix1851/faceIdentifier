@@ -3,6 +3,9 @@ from identifier import identifier
 from faceRecognition import faceRecognitionFromPhoto
 
 import numpy as np
+import qrtools
+
+import requests
 
 import cv2
 import base64
@@ -14,6 +17,15 @@ def processImage(frame:str):
     frame = base64.b64decode(frame)
     np_data = np.fromstring(frame, np.uint8)
     frame = cv2.imdecode(np_data, cv2.IMREAD_UNCHANGED)
+    # qrcode = frame
+    # detector = cv2.QRCodeDetector()
+    # data, bbox, straight_qrcode = detector.detectAndDecode(qrcode)
+    # if(data):
+    #     x = requests.get(
+    #         'https://hakatonkrasnodar.pythonanywhere.com/verify_qr?qr='+data)
+    #     print(x.text)
+
+
     face = faceRecognitionFromPhoto(frame)
     if(len(face[2])):
         photo = identifier(face[1], data, face[2])
