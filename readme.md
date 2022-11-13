@@ -2,5 +2,4 @@
 ### Require:
     - Make start.bash excecutable 
     - Start it!
-    - Gfgdf
 
